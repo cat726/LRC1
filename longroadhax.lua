@@ -2,9 +2,11 @@
 local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
 local MainUI = UILibrary.Load("-")
 local FirstPage = MainUI.AddPage("Home")
+local cPage = MainUI.AddPage("Vehicle")
 local sPage = MainUI.AddPage("Guns")
 local tPage = MainUI.AddPage("Teleports")
 local mPage = MainUI.AddPage("Misc")
+_G.dela = false
 
 local function dropoff()
     firetouchinterest(game:GetService("Workspace").DropOff, game.Players.LocalPlayer.Character.HumanoidRootPart , 0)
@@ -24,22 +26,9 @@ end
 
 
 local FirstLabel = FirstPage.AddLabel("Section 1")
-local FirstButton = FirstPage.AddButton("Spawn Car(Commmander)", function()
-local args = {
-    [1] = "commander"
-}
 
-game:GetService("ReplicatedStorage").SpawnCar:FireServer(unpack(args))
-end)
 
-local SecondButton = FirstPage.AddButton("Spawn Car(Silver)", function()
-local args = {
-    [1] = "silver"
-}
 
-game:GetService("ReplicatedStorage").SpawnCar:FireServer(unpack(args))
-
-end)
 local carButton = FirstPage.AddButton("Car Menu(Cycle)", function()
     for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
 	if v.Name == 'car spawn' then
@@ -56,7 +45,49 @@ local ThirdButton = FirstPage.AddButton("Get Money", function()
 end)
 
 
+local cardelToggle = FirstPage.AddButton("Delete All Cars", function()
+    _G.dela = not _G.dela
+    while _G.dela == true do
+        for i, v in pairs(game.Players:GetPlayers()) do
+            local data = tostring(v) .. 'sCar'
+            local args = {
+            [1] = workspace[data]
+            }
+            game:GetService("ReplicatedStorage").DeleteCar:FireServer(unpack(args))
+        end
+        wait(0.1)
+    end
+end)
 
+local FirstLabel = cPage.AddLabel("Citzen Cars")
+local FirstDropdown = cPage.AddDropdown("Spawn Car", {
+    "silver",
+    "commander"
+    }, function(Value)
+        local args = {
+            [1] = Value
+        }
+        
+        game:GetService("ReplicatedStorage").SpawnCar:FireServer(unpack(args))
+
+
+end)
+local FasdfLabel = cPage.AddLabel("State Troopers")
+local FirstDropdown = cPage.AddDropdown("Spawn Car", {
+    "Baron",
+    "Albany"
+    }, function(Value)
+        if Value == 'Baron' then
+            Value = 'sheriff'
+        elseif Value == 'Albany' then
+            Value = 'sheriff2'
+        end
+        local args = {
+            [1] = Value
+        }
+        
+        game:GetService("ReplicatedStorage").SpawnCar:FireServer(unpack(args))
+end)
 
 local SecondButton = sPage.AddButton("Fire ClickDetectors", function()
    -- fireclickdetector(game:GetService("Workspace").Model.BUYBUTTON.ClickDetector)
