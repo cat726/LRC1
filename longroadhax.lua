@@ -15,6 +15,12 @@ local function getbox()
     fireclickdetector(game:GetService("Workspace").Box.ClickDetector)
 end
 
+local function tppp(plyr)
+    local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local pl2 = plyr
+    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+    pl.CFrame = game.Players[pl2].Character.HumanoidRootPart.CFrame
+end
 
 
 local FirstLabel = FirstPage.AddLabel("Section 1")
@@ -48,7 +54,6 @@ local ThirdButton = FirstPage.AddButton("Get Money", function()
     getbox()
     dropoff()
 end)
-
 
 
 
@@ -113,12 +118,15 @@ local fButton8 = tPage.AddButton("Gas Station #1 Garage", function()
     local a = CFrame.new(-3377, 17, -287)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a
 end)
+local fButton9 = tPage.AddButton("Fossil Oil", function()
+    local a = game:GetService("Workspace").GasStation["Toilet_Open"].Part.CFrame
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a
+end)
 
 
 local aButton1 = mPage.AddButton("Speed Hack", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shawnjbragdon-0/vmod/main/mini-modules/speedhack.lua", true))()
 end)
-
 
 
 
