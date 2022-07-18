@@ -55,35 +55,6 @@ local ThirdButton = FirstPage.AddButton("Get Money", function()
     dropoff()
 end)
 
-_G.toggle1 = false
-local FirstToggle = FirstPage.AddToggle("Tree Collision", true, function(Value)
-    _G.toggle1 = not _G.toggle1
-    if _G.toggle1 == true then
-        for i,v in pairs(workspace:GetDescendants()) do
-            if v.Parent.Name == 'Tree' then
-                v.CanCollide = false
-            elseif v.Parent.Name == 'Pine Tree Wide' then
-                v.CanCollide = false
-            elseif v.Parent.Name == 'Pine Tree' then
-                v.CanCollide = false
-            elseif v.Parent.Name == 'SwampTrees' then
-                v.CanCollide = false
-            end
-        end
-    else
-        for i,v in pairs(workspace:GetDescendants()) do
-            if v.Parent.Name == 'Tree' then
-                v.CanCollide = true
-            elseif v.Parent.Name == 'Pine Tree Wide' then
-                v.CanCollide = true
-            elseif v.Parent.Name == 'Pine Tree' then
-                v.CanCollide = true
-            elseif v.Parent.Name == 'SwampTrees' then
-                v.CanCollide = true
-            end
-        end
-    end
-end)
 
 
 
