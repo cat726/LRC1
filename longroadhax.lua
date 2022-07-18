@@ -55,6 +55,35 @@ local ThirdButton = FirstPage.AddButton("Get Money", function()
     dropoff()
 end)
 
+_G.toggle1 = false
+local FirstToggle = FirstPage.AddToggle("Tree Collision", true, function(Value)
+    _G.toggle1 = not _G.toggle1
+    if _G.toggle1 == true then
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v.Parent.Name == 'Tree' then
+                v.CanCollide = false
+            elseif v.Parent.Name == 'Pine Tree Wide' then
+                v.CanCollide = false
+            elseif v.Parent.Name == 'Pine Tree' then
+                v.CanCollide = false
+            elseif v.Parent.Name == 'SwampTrees' then
+                v.CanCollide = false
+            end
+        end
+    else
+        for i,v in pairs(workspace:GetDescendants()) do
+            if v.Parent.Name == 'Tree' then
+                v.CanCollide = true
+            elseif v.Parent.Name == 'Pine Tree Wide' then
+                v.CanCollide = true
+            elseif v.Parent.Name == 'Pine Tree' then
+                v.CanCollide = true
+            elseif v.Parent.Name == 'SwampTrees' then
+                v.CanCollide = true
+            end
+        end
+    end
+end)
 
 
 
@@ -96,6 +125,10 @@ local fButton3 = tPage.AddButton("City 2", function()
     local a = CFrame.new(-8332, 18, -10667)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a
 end)
+local fButton332 = tPage.AddButton("Desert Cabin", function()
+    local a = CFrame.new(-19292, 18, -10858)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a
+end)
 local fButton4 = tPage.AddButton("Alamo Poilce Department", function()
     local a = CFrame.new(-21783, 19, -10715)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a
@@ -127,6 +160,7 @@ end)
 local aButton1 = mPage.AddButton("Speed Hack", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shawnjbragdon-0/vmod/main/mini-modules/speedhack.lua", true))()
 end)
-
-
+local aButton2 = mPage.AddButton("Infinitey Yeild", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
 
