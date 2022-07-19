@@ -58,6 +58,21 @@ local cardelToggle = FirstPage.AddButton("Delete All Cars", function()
         wait(0.1)
     end
 end)
+local ka1Toggle = FirstPage.AddButton("Kill All #M1(M1911 needed)", function()
+    
+    local plrs = game.Players:GetChildren()
+    local Players = game:GetService("Players")
+
+    for c = 1, #plrs do
+            local args = {
+            [1] = 'Fire',
+            [2] = plrs[c].Character.Head,
+            [3] = CFrame.new(Vector3.new(), Vector3.new())
+        }
+        game:GetService("Players").LocalPlayer.Character.M1911.Workings.Remotes.RemoteEvent:FireServer(unpack(args))
+        wait(0.1)
+    end
+end)
 
 local FirstLabel = cPage.AddLabel("Citzen Cars")
 local FirstDropdown = cPage.AddDropdown("Spawn Car", {
@@ -89,14 +104,18 @@ local FirstDropdown = cPage.AddDropdown("Spawn Car", {
         game:GetService("ReplicatedStorage").SpawnCar:FireServer(unpack(args))
 end)
 
-local SecondButton = sPage.AddButton("Fire ClickDetectors", function()
-   -- fireclickdetector(game:GetService("Workspace").Model.BUYBUTTON.ClickDetector)
-   for i,v in pairs(workspace:GetDescendants()) do
-        if v:IsA("ClickDetector") then
-            fireclickdetector(v)
+local SecondButton = sPage.AddButton("M1911 $5500", function()
+    for i, v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA('ClickDetector') then
+                if v.Parent.Name == 'BUYBUTTON' then
+                        if v.Parent.CFrame == '-1563.35999, 18.7924004, -206.806, 0, 0, 1, 1, 0, 0, 0, 1, 0' then
+                                fireclickdetector(v)
+                        end
+                end
         end
     end
 end)
+
 
 local secondlabelt1 = tPage.AddLabel("Location Teleports")
 local fButton1 = tPage.AddButton("Main Spawn", function()
@@ -165,4 +184,44 @@ end)
 local aButton2 = mPage.AddButton("Infinitey Yeild", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
+local aButton3 = sPage.AddButton("Fire ClickDetectors", function()
+    -- fireclickdetector(game:GetService("Workspace").Model.BUYBUTTON.ClickDetector)
+    for i,v in pairs(workspace:GetDescendants()) do
+         if v:IsA("ClickDetector") then
+             fireclickdetector(v)
+         end
+     end
+ end)
+ local aButton4 = mPage.AddButton("Invisible(hide first)", function()
+    local removeNametags = false -- remove custom billboardgui nametags from hrp, could trigger anticheat
 
+local plr = game:GetService("Players").LocalPlayer
+local character = plr.Character
+local hrp = character.HumanoidRootPart
+local old = hrp.CFrame
+
+if not character:FindFirstChild("LowerTorso") or character.PrimaryPart ~= hrp then
+return print("unsupported")
+end
+
+if removeNametags then
+local tag = hrp:FindFirstChildOfClass("BillboardGui")
+if tag then tag:Destroy() end
+
+hrp.ChildAdded:Connect(function(item)
+if item:IsA("BillboardGui") then
+task.wait()
+item:Destroy()
+end
+end)
+end
+
+local newroot = character.LowerTorso.Root:Clone()
+hrp.Parent = workspace
+character.PrimaryPart = hrp
+character:MoveTo(Vector3.new(old.X,9e9,old.Z))
+hrp.Parent = character
+task.wait(0.5)
+newroot.Parent = hrp
+hrp.CFrame = old
+end)
